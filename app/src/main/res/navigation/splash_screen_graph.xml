@@ -11,7 +11,8 @@
         android:label="SplashScreenFragment" >
         <action
             android:id="@+id/action_splashScreenFragment_to_authorizationActivity"
-            app:destination="@id/authorizationActivity" />
+            app:destination="@id/authorizationActivity"
+            app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
     <activity
         android:id="@+id/authorizationActivity"
