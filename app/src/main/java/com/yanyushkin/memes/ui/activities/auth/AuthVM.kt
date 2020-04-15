@@ -30,9 +30,9 @@ class AuthVM : ViewModel() {
 
     fun auth(login: String, password: String) {
         loginValid.value = validField(login)
-        passwordValid.value = validField(password)
+        passwordValid.value = validField(password) && validPassLen(password)
 
-        if (loginValid.value!! && passwordValid.value!! && validPassLen(password)) {
+        if (loginValid.value!! && passwordValid.value!!) {
             repository.auth(login, password).subscribe({
                 token = it.accessToken
                 userInfo = it.userInfo.transform()

@@ -36,7 +36,8 @@
         android:layout_marginEnd="16dp"
         style="@style/TextFields"
         app:labelText="@string/auth_password_label_text"
-        android:layout_below="@+id/login_tf">
+        android:layout_below="@+id/login_tf"
+        app:endIcon="@drawable/ic_eye">
 
         <studio.carbonylgroup.textfieldboxes.ExtendedEditText
             android:id="@+id/password_et"
@@ -56,5 +57,17 @@
         android:text="@string/auth_login_btn"
         android:textColor="@color/colorPrimary">
     </Button>
+
+    <ProgressBar
+        android:id="@+id/login_pb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:theme="@style/ProgressBar"
+        android:layout_marginBottom="16dp"
+        android:visibility="invisible"
+        android:elevation="10dp">
+    </ProgressBar>
 
 </RelativeLayout>
