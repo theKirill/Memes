@@ -1,10 +1,11 @@
-package com.yanyushkin.memes.ui.activities
+package com.yanyushkin.memes.ui.activities.splash
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import androidx.navigation.Navigation
 import com.yanyushkin.memes.R
+import com.yanyushkin.memes.ui.activities.auth.AuthorizationActivity
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -12,13 +13,13 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
-        moveToMainActivity()
+        goToMainActivity()
     }
 
-    private fun moveToMainActivity() {
+    private fun goToMainActivity() {
         Handler().postDelayed({
-            Navigation.findNavController(this, R.id.splash_screen_nav_host_fragment)
-                .navigate(R.id.action_splashScreenFragment_to_authorizationActivity)
+            val openLoginActivityIntent = Intent(this, AuthorizationActivity::class.java)
+            startActivity(openLoginActivityIntent)
         }, 300)
     }
 }

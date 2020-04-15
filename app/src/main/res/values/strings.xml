@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Memes</string>
+    <string name="auth_login_label_text">Логин</string>
+    <string name="auth_password_label_text">Пароль</string>
+    <string name="auth_error_text">Поле не может быть пустым</string>
+    <string name="auth_login_btn">Войти</string>
+    <string name="auth_not_valid_data_sb">Вы ввели неверные данные. Попробуйте ещё раз</string>
+    <string name="auth_no_internet_sb">Произошел сбой. Проверьте подключение к Интернету</string>
 </resources>
