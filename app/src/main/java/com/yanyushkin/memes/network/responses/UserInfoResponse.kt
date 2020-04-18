@@ -6,17 +6,23 @@ import com.yanyushkin.memes.domain.UserInfo
 
 data class UserInfoResponse(
     @SerializedName("id")
-    val id: Int,
+    val id: Int?,
     @SerializedName("username")
-    val username: String,
+    val username: String?,
     @SerializedName("firstName")
-    val firstName: String,
+    val firstName: String?,
     @SerializedName("lastName")
-    val lastName: String,
+    val lastName: String?,
     @SerializedName("userDescription")
-    val description: String
+    val description: String?
 ) : BaseResponse<UserInfo> {
     override fun transform(): UserInfo {
-        return UserInfo(id, username, firstName, lastName, description)
+        return UserInfo(
+            id ?: 0,
+            username ?: "",
+            firstName ?: "",
+            lastName ?: "",
+            description ?: ""
+        )
     }
 }

@@ -33,7 +33,18 @@ class AuthorizationActivity : AppCompatActivity() {
             ViewModelProvider(this,
                 BaseViewModelFactory { AuthVM() }).get(AuthVM::class.java)
 
-        initStateObserver()
+        initStateObservers()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setStatesForTF()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        authViewModel.passwordVisible.value = passwordVisible
+        authViewModel.auth(login_et.text.toString(), password_et.text.toString(), this)
     }
 
     override fun onBackPressed() {}
@@ -45,6 +56,8 @@ class AuthorizationActivity : AppCompatActivity() {
     }
 
     private fun initPasswordTextChangeWatcher() {
+        if (password_et.text.isNotEmpty() && !validPassLen(password_et.text.toString()))
+            password_tf.helperText = "Пароль должен содержать $PASSWORD_LENGTH символов"
         password_tf.setSimpleTextChangeWatcher { theNewText, isError ->
             if (!validPassLen(theNewText))
                 password_tf.helperText = "Пароль должен содержать $PASSWORD_LENGTH символов"
@@ -58,13 +71,12 @@ class AuthorizationActivity : AppCompatActivity() {
             login_pb.show()
             login_btn.text = ""
             hideKeyBoard()
-            authViewModel.auth(login_et.text.toString(), password_et.text.toString())
+            authViewModel.auth(login_et.text.toString(), password_et.text.toString(), this)
         }
     }
 
-    private fun initIconShowPassClickListener() {
+    private fun initIconShowPassClickListener() =
         password_tf.endIconImageButton.setOnClickListener { changePasswordInputType() }
-    }
 
     private fun hideKeyBoard() {
         hideKeyboard(this, login_btn)
@@ -73,21 +85,21 @@ class AuthorizationActivity : AppCompatActivity() {
 
     private fun changePasswordInputType() {
         val icon = if (!passwordVisible)
-            R.drawable.ic_close_eye
-        else
             R.drawable.ic_eye
-
-        val inputType = if (!passwordVisible)
-            InputType.TYPE_CLASS_TEXT
         else
+            R.drawable.ic_close_eye
+
+        val inputType = if (passwordVisible)
             InputType.TYPE_TEXT_VARIATION_PASSWORD
+        else
+            InputType.TYPE_CLASS_TEXT
 
         passwordVisible = !passwordVisible
-        password_et.inputType = inputType
+        //password_et.inputType = inputType
         password_tf.setEndIcon(icon)
     }
 
-    private fun initStateObserver() {
+    private fun initStateObservers() {
         authViewModel.loginValid.observe(this, Observer<Boolean> {
             when (it) {
                 false -> {
@@ -111,7 +123,6 @@ class AuthorizationActivity : AppCompatActivity() {
         authViewModel.state.observe(this, Observer<AuthState> {
             when (it) {
                 AuthState.SUCCESS -> {
-                    authViewModel.saveUserInfo(this)
                     openMainActivity()
                 }
                 AuthState.ERROR_NOT_VALID_DATA -> {
@@ -134,6 +145,21 @@ class AuthorizationActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun setStatesForTF() {
+        authViewModel.loginValid.value?.let {
+            if (!it)
+                login_tf.setError(getString(R.string.auth_error_text), false)
+        }
+        authViewModel.passwordValid.value?.let {
+            if (!it)
+                password_tf.setError(getString(R.string.auth_error_text), false)
+        }
+        authViewModel.passwordVisible.value?.let {
+            passwordVisible = it
+            changePasswordInputType()
+        }
     }
 
     private fun openMainActivity() {

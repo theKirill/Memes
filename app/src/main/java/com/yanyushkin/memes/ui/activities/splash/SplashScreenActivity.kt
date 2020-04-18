@@ -13,10 +13,10 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
-        goToMainActivity()
+        openNextActivity()
     }
 
-    private fun goToMainActivity() {
+    private fun openNextActivity() {
         Handler().postDelayed({
             val openLoginActivityIntent = Intent(this, AuthorizationActivity::class.java)
             startActivity(openLoginActivityIntent)
