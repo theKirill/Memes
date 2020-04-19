@@ -58,7 +58,7 @@ class AuthorizationActivity : AppCompatActivity() {
     private fun initPasswordTextChangeWatcher() {
         if (password_et.text.isNotEmpty() && !validPassLen(password_et.text.toString()))
             password_tf.helperText = "Пароль должен содержать $PASSWORD_LENGTH символов"
-        password_tf.setSimpleTextChangeWatcher { theNewText, isError ->
+        password_tf.setSimpleTextChangeWatcher { theNewText, _ ->
             if (!validPassLen(theNewText))
                 password_tf.helperText = "Пароль должен содержать $PASSWORD_LENGTH символов"
             else

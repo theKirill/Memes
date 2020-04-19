@@ -5,5 +5,7 @@
     <string name="auth_error_text">Поле не может быть пустым</string>
     <string name="auth_login_btn">Войти</string>
     <string name="auth_not_valid_data_sb">Вы ввели неверные данные. Попробуйте ещё раз</string>
-    <string name="auth_no_internet_sb">Произошел сбой. Проверьте подключение к Интернету</string>
+    <string name="auth_no_internet_sb">Отсутствует интернет-соединение\nПопробуйте позже</string>
+    <string name="toolbar_title_text">Популярные мемы</string>
+    <string name="memes_error_text">Не удалось загрузить ленту\nОбновите экран или попробуйте позже</string>
 </resources>

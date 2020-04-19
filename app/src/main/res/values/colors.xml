@@ -3,9 +3,11 @@
     <color name="colorPrimary">#23213F</color>
     <color name="colorPrimaryDark">#23213F</color>
     <color name="colorAccent">#1EF0D7</color>
-    <color name="colorTFBackground">#312F51</color>
+    <color name="colorBackground">#312F51</color>
     <color name="colorText">#FFFFFF</color>
-    //<color name="colorSecondaryTF">#bbbbbb</color>
+    <color name="colorSecondaryTF">#bbbbbb</color>
+    <color name="colorBottomNavigation">#12102B</color>
     <color name="colorError">#FF575D</color>
     <color name="colorSnackBarText">#FEFEFE</color>
+    <color name="colorErrorMemes">#9FACC7</color>
 </resources>

@@ -8,24 +8,49 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="TextFields">
+    <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorBackground</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="TextFields">
         <item name="errorColor">@color/colorError</item>
-        <item name="panelBackgroundColor">@color/colorTFBackground</item>
+        <item name="panelBackgroundColor">@color/colorBackground</item>
         <item name="primaryColor">@color/colorAccent</item>
         <item name="helperTextColor">@color/colorText</item>
         <item name="secondaryColor">@color/colorSecondaryTF</item>
     </style>
 
     <style name="EditTexts">
-        <!-- Customize your theme here. -->
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textSize">16sp</item>
     </style>
 
     <style name="ProgressBar">
-        <!-- Customize your theme here. -->
         <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
+    <style name="MainTextViews">
+        <item name="fontFamily">Roboto</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorText</item>
+    </style>
+
+    <style name="OtherTextViews">
+        <item name="fontFamily">Roboto</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+    </style>
+
+    <style name="ErrorTextViews">
+        <item name="fontFamily">Roboto</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorErrorMemes</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
 </resources>

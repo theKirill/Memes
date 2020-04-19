@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.yanyushkin.memes.R
+import com.yanyushkin.memes.storage.UserStorage
 import com.yanyushkin.memes.ui.activities.auth.AuthorizationActivity
+import com.yanyushkin.memes.ui.activities.main.MainActivity
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -17,9 +19,19 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun openNextActivity() {
+        val userStorage = UserStorage(this)
         Handler().postDelayed({
-            val openLoginActivityIntent = Intent(this, AuthorizationActivity::class.java)
-            startActivity(openLoginActivityIntent)
+            val intent = if (userStorage.getAccessToken().isNotEmpty())
+                getOpenMainActivityIntent()
+            else
+                getOpenLoginActivityIntent()
+
+            startActivity(intent)
         }, 300)
     }
+
+    private fun getOpenLoginActivityIntent(): Intent =
+        Intent(this, AuthorizationActivity::class.java)
+
+    private fun getOpenMainActivityIntent(): Intent = Intent(this, MainActivity::class.java)
 }

@@ -21,7 +21,7 @@ class UserStorage (context: Context) {
         prefs.edit().putString(DESCRIPTION_KEY, userInfo.description).apply()
     }
 
-    fun getField(key: String): Any = prefs.getString(key, "") ?: ""
+    fun getAccessToken(): String = prefs.getString(ACCESS_TOKEN_KEY, "") ?: ""
 
     companion object {
         private const val APP_PREFERENCES_KEY = "settings"
