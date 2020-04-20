@@ -8,4 +8,5 @@
     <string name="auth_no_internet_sb">Отсутствует интернет-соединение\nПопробуйте позже</string>
     <string name="toolbar_title_text">Популярные мемы</string>
     <string name="memes_error_text">Не удалось загрузить ленту\nОбновите экран или попробуйте позже</string>
+    <string name="share_meme_text">Поделиться мемом</string>
 </resources>

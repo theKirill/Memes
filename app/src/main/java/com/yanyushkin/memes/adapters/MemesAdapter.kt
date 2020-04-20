@@ -1,6 +1,5 @@
 package com.yanyushkin.memes.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,10 @@ import com.yanyushkin.memes.R
 import com.yanyushkin.memes.domain.Meme
 import kotlinx.android.synthetic.main.card_meme.view.*
 
-class MemesAdapter(private var memes: MutableList<Meme>) :
+class MemesAdapter(
+    private var memes: MutableList<Meme>,
+    private val shareClickListener: View.OnClickListener
+) :
     RecyclerView.Adapter<MemesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -41,6 +43,7 @@ class MemesAdapter(private var memes: MutableList<Meme>) :
             setLike(meme.isFavourite)
 
             setClickListenerOnLikeButton(pos)
+            setClickListenerOnShareButton()
         }
 
         private fun setImage(imageUrl: String) =
@@ -70,5 +73,8 @@ class MemesAdapter(private var memes: MutableList<Meme>) :
                 itemView.like_btn.setImageResource(imageLike)
             }
         }
+
+        private fun setClickListenerOnShareButton() =
+            itemView.share_btn.setOnClickListener(shareClickListener)
     }
 }

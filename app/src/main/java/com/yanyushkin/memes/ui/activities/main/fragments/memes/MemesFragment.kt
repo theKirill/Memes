@@ -1,5 +1,6 @@
 package com.yanyushkin.memes.ui.activities.main.fragments.memes
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.yanyushkin.memes.R
 import com.yanyushkin.memes.adapters.MemesAdapter
+import com.yanyushkin.memes.domain.Meme
 import com.yanyushkin.memes.extensions.gone
 import com.yanyushkin.memes.extensions.show
 import com.yanyushkin.memes.extensions.showSnackBar
@@ -73,7 +75,7 @@ class MemesFragment : Fragment() {
                 AuthState.SUCCESS -> {
                     memesViewModel.memes.value?.let {
                         if (!swipe_memes_layout.isRefreshing) {
-                            adapter = MemesAdapter(it)
+                            initAdapter(it)
                             memes_rv.adapter = adapter
                         } else {
                             adapter.setMemes(it)
@@ -91,6 +93,23 @@ class MemesFragment : Fragment() {
             }
             swipe_memes_layout.isRefreshing = false
             progress_memes_layout.gone()
+        })
+    }
+
+    // TODO: сделать шаринг мема (заголовок, ссылка на изображение, описание)
+    private fun initAdapter(memes: MutableList<Meme>) {
+        adapter = MemesAdapter(memes, View.OnClickListener {
+            val sendIntent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, "share")
+                type = "plain/text"
+            }
+            val shareIntent =
+                Intent.createChooser(
+                    sendIntent,
+                    getString(R.string.share_meme_text)
+                )
+            startActivity(shareIntent)
         })
     }
 }
