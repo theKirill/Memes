@@ -6,5 +6,5 @@ import javax.inject.Inject
 
 class MemesRepository @Inject constructor(private val memesApi: MemesApi) {
 
-    fun getMemes() = memesApi.getMemes().getDataInBackground()
+    fun getMemes(accessToken: String) = memesApi.getMemes(accessToken).getDataInBackground()
 }

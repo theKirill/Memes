@@ -16,6 +16,7 @@ import com.yanyushkin.memes.extensions.gone
 import com.yanyushkin.memes.extensions.show
 import com.yanyushkin.memes.extensions.showSnackBar
 import com.yanyushkin.memes.states.ScreenState
+import com.yanyushkin.memes.storage.UserStorage
 import com.yanyushkin.memes.utils.BaseViewModelFactory
 import kotlinx.android.synthetic.main.fragment_memes.*
 
@@ -49,7 +50,8 @@ class MemesFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         if (!memesViewModel.rotated) {
-            memesViewModel.getMemes()
+            val accessToken = UserStorage(context!!).getAccessToken()
+            memesViewModel.getMemes(accessToken)
             memesViewModel.rotated = false
         }
 
@@ -72,7 +74,8 @@ class MemesFragment : Fragment() {
         swipe_memes_layout.setColorSchemeResources(R.color.colorBackground)
         swipe_memes_layout.setProgressBackgroundColorSchemeResource(R.color.colorAccent)
         swipe_memes_layout.setOnRefreshListener {
-            memesViewModel.getMemes()
+            val accessToken = UserStorage(context!!).getAccessToken()
+            memesViewModel.getMemes(accessToken)
         }
     }
 
