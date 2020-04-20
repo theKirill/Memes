@@ -62,6 +62,7 @@ class MemesAdapter(
             itemView.like_btn.setImageResource(imageLike)
         }
 
+        // TODO: добавить сохранение состояния кнопки лайка
         private fun setClickListenerOnLikeButton(i: Int) {
             itemView.like_btn.setOnClickListener {
                 val imageLike = if (memes[i].isFavourite)

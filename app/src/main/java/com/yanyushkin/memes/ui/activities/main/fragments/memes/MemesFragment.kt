@@ -2,11 +2,9 @@ package com.yanyushkin.memes.ui.activities.main.fragments.memes
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -17,7 +15,7 @@ import com.yanyushkin.memes.domain.Meme
 import com.yanyushkin.memes.extensions.gone
 import com.yanyushkin.memes.extensions.show
 import com.yanyushkin.memes.extensions.showSnackBar
-import com.yanyushkin.memes.states.AuthState
+import com.yanyushkin.memes.states.ScreenState
 import com.yanyushkin.memes.utils.BaseViewModelFactory
 import kotlinx.android.synthetic.main.fragment_memes.*
 
@@ -50,11 +48,20 @@ class MemesFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        memesViewModel.getMemes()
+        if (!memesViewModel.rotated) {
+            memesViewModel.getMemes()
+            memesViewModel.rotated = false
+        }
+
         initRecyclerView()
         initSwipeRefreshListener()
 
         initObservers()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        memesViewModel.rotated = true
     }
 
     private fun initRecyclerView() {
@@ -70,9 +77,9 @@ class MemesFragment : Fragment() {
     }
 
     private fun initObservers() {
-        memesViewModel.state.observe(this, Observer<AuthState> {
+        memesViewModel.state.observe(this, Observer<ScreenState> {
             when (it) {
-                AuthState.SUCCESS -> {
+                ScreenState.SUCCESS -> {
                     memesViewModel.memes.value?.let {
                         if (!swipe_memes_layout.isRefreshing) {
                             initAdapter(it)
@@ -83,7 +90,7 @@ class MemesFragment : Fragment() {
                     }
                     swipe_memes_layout.show()
                 }
-                AuthState.ERROR_OTHER -> {
+                ScreenState.ERROR_OTHER -> {
                     if (memesViewModel.memes.value == null || memesViewModel.memes.value!!.size == 0) {
                         swipe_memes_layout.gone()
                         error_memes_layout.show()

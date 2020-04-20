@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.yanyushkin.memes.*
 import com.yanyushkin.memes.network.AuthRepository
-import com.yanyushkin.memes.states.AuthState
+import com.yanyushkin.memes.states.ScreenState
 import com.yanyushkin.memes.storage.UserStorage
 import com.yanyushkin.memes.utils.validField
 import com.yanyushkin.memes.utils.validPassLen
@@ -16,7 +16,7 @@ class AuthVM () : ViewModel() {
 
     @Inject
     lateinit var repository: AuthRepository
-    val state = MutableLiveData<AuthState>()
+    val state = MutableLiveData<ScreenState>()
     val loginValid = MutableLiveData<Boolean>()
     val passwordValid = MutableLiveData<Boolean>()
     val passwordVisible = MutableLiveData<Boolean>()
@@ -35,12 +35,12 @@ class AuthVM () : ViewModel() {
         if (loginValid.value!! && passwordValid.value!!) {
             repository.auth(login, password).subscribe({
                 userStorage.saveUserInfo(it.accessToken, it.userInfo.transform())
-                state.value = AuthState.SUCCESS
+                state.value = ScreenState.SUCCESS
             }, {
                 if (it is UnknownHostException)
-                    state.value = AuthState.ERROR_NO_INTERNET
+                    state.value = ScreenState.ERROR_NO_INTERNET
                 else
-                    state.value = AuthState.ERROR_NOT_VALID_DATA
+                    state.value = ScreenState.ERROR_NOT_VALID_DATA
             })
         }
     }
