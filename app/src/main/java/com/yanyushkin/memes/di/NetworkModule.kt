@@ -3,6 +3,7 @@ package com.yanyushkin.memes.di
 import com.yanyushkin.memes.BASE_URL
 import com.yanyushkin.memes.BuildConfig
 import com.yanyushkin.memes.network.api.AuthApi
+import com.yanyushkin.memes.network.api.MemesApi
 import dagger.Module
 import dagger.Provides
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
@@ -38,5 +39,9 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideLoginApi(retrofit: Retrofit): AuthApi = retrofit.create(AuthApi::class.java)
+    fun provideAuthApi(retrofit: Retrofit): AuthApi = retrofit.create(AuthApi::class.java)
+
+    @Singleton
+    @Provides
+    fun provideMemesApi(retrofit: Retrofit): MemesApi = retrofit.create(MemesApi::class.java)
 }

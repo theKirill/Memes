@@ -1,6 +1,5 @@
 package com.yanyushkin.memes.network.responses
 
-import android.util.Log
 import com.google.gson.annotations.SerializedName
 import com.yanyushkin.memes.domain.UserInfo
 

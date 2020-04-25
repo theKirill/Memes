@@ -13,7 +13,7 @@ import com.yanyushkin.memes.extensions.hide
 import com.yanyushkin.memes.extensions.hideKeyboard
 import com.yanyushkin.memes.extensions.show
 import com.yanyushkin.memes.extensions.showSnackBar
-import com.yanyushkin.memes.states.AuthState
+import com.yanyushkin.memes.states.ScreenState
 import com.yanyushkin.memes.ui.activities.main.MainActivity
 import com.yanyushkin.memes.utils.validPassLen
 import kotlinx.android.synthetic.main.activity_authorization.*
@@ -47,8 +47,6 @@ class AuthorizationActivity : AppCompatActivity() {
         authViewModel.auth(login_et.text.toString(), password_et.text.toString(), this)
     }
 
-    override fun onBackPressed() {}
-
     private fun initViews() {
         initPasswordTextChangeWatcher()
         initLoginButtonClickListener()
@@ -58,7 +56,7 @@ class AuthorizationActivity : AppCompatActivity() {
     private fun initPasswordTextChangeWatcher() {
         if (password_et.text.isNotEmpty() && !validPassLen(password_et.text.toString()))
             password_tf.helperText = "Пароль должен содержать $PASSWORD_LENGTH символов"
-        password_tf.setSimpleTextChangeWatcher { theNewText, isError ->
+        password_tf.setSimpleTextChangeWatcher { theNewText, _ ->
             if (!validPassLen(theNewText))
                 password_tf.helperText = "Пароль должен содержать $PASSWORD_LENGTH символов"
             else
@@ -120,12 +118,12 @@ class AuthorizationActivity : AppCompatActivity() {
                 }
             }
         })
-        authViewModel.state.observe(this, Observer<AuthState> {
+        authViewModel.state.observe(this, Observer<ScreenState> {
             when (it) {
-                AuthState.SUCCESS -> {
+                ScreenState.SUCCESS -> {
                     openMainActivity()
                 }
-                AuthState.ERROR_NOT_VALID_DATA -> {
+                ScreenState.ERROR_NOT_VALID_DATA -> {
                     showSnackBar(
                         login_main_layout,
                         this,
@@ -134,7 +132,7 @@ class AuthorizationActivity : AppCompatActivity() {
                     login_pb.hide()
                     login_btn.text = getText(R.string.auth_login_btn)
                 }
-                AuthState.ERROR_NO_INTERNET -> {
+                ScreenState.ERROR_NO_INTERNET -> {
                     showSnackBar(
                         login_main_layout,
                         this,
@@ -165,5 +163,6 @@ class AuthorizationActivity : AppCompatActivity() {
     private fun openMainActivity() {
         val openMainActivityIntent = Intent(this, MainActivity::class.java)
         startActivity(openMainActivityIntent)
+        finish()
     }
 }

@@ -1,6 +1,7 @@
 package com.yanyushkin.memes.di
 
 import com.yanyushkin.memes.ui.activities.auth.AuthVM
+import com.yanyushkin.memes.ui.activities.main.fragments.memes.MemesVM
 import dagger.Component
 import javax.inject.Singleton
 
@@ -9,4 +10,6 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun injectsAuthVM(authVM: AuthVM)
+
+    fun injectsMemesVM(memesVM: MemesVM)
 }
