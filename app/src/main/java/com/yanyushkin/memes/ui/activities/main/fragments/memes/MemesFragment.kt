@@ -114,24 +114,34 @@ class MemesFragment : Fragment() {
     // TODO: сделать шаринг мема (заголовок, ссылка на изображение, описание)
     private fun initAdapter(memes: MutableList<Meme>) {
         adapter = MemesAdapter(memes, object : OnClickListener {
-            override fun onClickView(position: Int) {
-                val openDetailingMemeActivityIntent =
-                    Intent(activity, DetailingMemeActivity::class.java)
-                openDetailingMemeActivityIntent.putExtra(MEME_KEY, memes[position])
-                startActivity(openDetailingMemeActivityIntent)
-            }
-        }, View.OnClickListener {
-            val sendIntent = Intent().apply {
-                action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, "share")
-                type = "plain/text"
-            }
-            val shareIntent =
-                Intent.createChooser(
-                    sendIntent,
-                    getString(R.string.share_meme_text)
-                )
-            startActivity(shareIntent)
+            override fun onClickView(position: Int) =
+                openDetailingMemeActivity(memes[position])
+        }, object : OnClickListener {
+            override fun onClickView(position: Int) = shareMeme(memes[position])
         })
+    }
+
+    private fun openDetailingMemeActivity(meme: Meme) {
+        val openDetailingMemeActivityIntent =
+            Intent(activity, DetailingMemeActivity::class.java)
+        openDetailingMemeActivityIntent.putExtra(MEME_KEY, meme)
+        startActivity(openDetailingMemeActivityIntent)
+    }
+
+    private fun shareMeme(meme: Meme) {
+        val sendIntent = Intent().apply {
+            action = Intent.ACTION_SEND_MULTIPLE
+            putExtra(Intent.EXTRA_TEXT, meme.title)
+            putExtra(Intent.EXTRA_TEXT, meme.photoUrl)
+            putExtra(Intent.EXTRA_TEXT, meme.description)
+            type="text/plain"
+            flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+        }
+        val shareIntent =
+            Intent.createChooser(
+                sendIntent,
+                getString(R.string.share_meme_text)
+            )
+        startActivity(shareIntent)
     }
 }

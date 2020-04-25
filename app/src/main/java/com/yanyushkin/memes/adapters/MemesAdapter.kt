@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.card_meme.view.*
 class MemesAdapter(
     private var memes: MutableList<Meme>,
     private val onMemeClickListener: OnClickListener,
-    private val onShareClickListener: View.OnClickListener
+    private val onShareClickListener: OnClickListener
 ) :
     RecyclerView.Adapter<MemesAdapter.ViewHolder>() {
 
@@ -48,7 +48,7 @@ class MemesAdapter(
             setLike(meme.isFavourite)
 
             setClickListenerOnLikeButton(pos)
-            setClickListenerOnShareButton()
+            setClickListenerOnShareButton(pos)
         }
 
         private fun setImage(imageUrl: String) =
@@ -75,7 +75,9 @@ class MemesAdapter(
             }
         }
 
-        private fun setClickListenerOnShareButton() =
-            itemView.share_btn.setOnClickListener(onShareClickListener)
+        private fun setClickListenerOnShareButton(i: Int) =
+            itemView.share_btn.setOnClickListener {
+                onShareClickListener.onClickView(i)
+            }
     }
 }
