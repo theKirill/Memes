@@ -1,10 +1,12 @@
 package com.yanyushkin.memes.ui.activities.main.fragments.memes
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -49,15 +51,10 @@ class MemesFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        if (!memesViewModel.rotated) {
-            val accessToken = UserStorage(context!!).getAccessToken()
-            memesViewModel.getMemes(accessToken)
-            memesViewModel.rotated = false
-        }
+        memesViewModel.getMemes(activity as Context)
 
         initRecyclerView()
         initSwipeRefreshListener()
-
         initObservers()
     }
 
@@ -74,8 +71,7 @@ class MemesFragment : Fragment() {
         swipe_memes_layout.setColorSchemeResources(R.color.colorBackground)
         swipe_memes_layout.setProgressBackgroundColorSchemeResource(R.color.colorAccent)
         swipe_memes_layout.setOnRefreshListener {
-            val accessToken = UserStorage(context!!).getAccessToken()
-            memesViewModel.getMemes(accessToken)
+            memesViewModel.getMemes(activity as Context)
         }
     }
 
@@ -93,14 +89,15 @@ class MemesFragment : Fragment() {
                     }
                     swipe_memes_layout.show()
                 }
-                ScreenState.ERROR_OTHER -> {
-                    if (memesViewModel.memes.value == null || memesViewModel.memes.value!!.size == 0) {
-                        swipe_memes_layout.gone()
-                        error_memes_layout.show()
-                    }
+                ScreenState.ERROR_NO_INTERNET -> {
                     showSnackBar(memes_main_layout, activity, R.string.auth_no_internet_sb)
                 }
+                ScreenState.ERROR_OTHER -> {
+                    swipe_memes_layout.gone()
+                    error_memes_layout.show()
+                }
             }
+            memesViewModel.rotated = false
             swipe_memes_layout.isRefreshing = false
             progress_memes_layout.gone()
         })

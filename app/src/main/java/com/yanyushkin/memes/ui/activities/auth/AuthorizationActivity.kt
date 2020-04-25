@@ -47,8 +47,6 @@ class AuthorizationActivity : AppCompatActivity() {
         authViewModel.auth(login_et.text.toString(), password_et.text.toString(), this)
     }
 
-    override fun onBackPressed() {}
-
     private fun initViews() {
         initPasswordTextChangeWatcher()
         initLoginButtonClickListener()
@@ -165,5 +163,6 @@ class AuthorizationActivity : AppCompatActivity() {
     private fun openMainActivity() {
         val openMainActivityIntent = Intent(this, MainActivity::class.java)
         startActivity(openMainActivityIntent)
+        finish()
     }
 }

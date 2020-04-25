@@ -55,7 +55,7 @@
         android:layout_margin="16dp"
         android:background="@drawable/ripple_button"
         android:text="@string/auth_login_btn"
-        android:textColor="@color/colorPrimary"></Button>
+        android:textColor="@color/colorPrimary"/>
 
     <ProgressBar
         android:id="@+id/login_pb"

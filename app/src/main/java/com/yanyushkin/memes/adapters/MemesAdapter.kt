@@ -32,6 +32,7 @@ class MemesAdapter(
 
     inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
+        // TODO
         init {
             v.setOnClickListener { }
         }
@@ -65,13 +66,8 @@ class MemesAdapter(
         // TODO: добавить сохранение состояния кнопки лайка
         private fun setClickListenerOnLikeButton(i: Int) {
             itemView.like_btn.setOnClickListener {
-                val imageLike = if (memes[i].isFavourite)
-                    R.drawable.ic_like_empty
-                else
-                    R.drawable.ic_like_full
-
                 memes[i].isFavourite = !memes[i].isFavourite
-                itemView.like_btn.setImageResource(imageLike)
+                setLike(memes[i].isFavourite)
             }
         }
 

@@ -30,8 +30,6 @@ class MainActivity : AppCompatActivity() {
         setOnNavItemSelectedListener()
     }
 
-    override fun onBackPressed() {}
-
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 

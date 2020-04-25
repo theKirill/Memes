@@ -1,6 +1,7 @@
 package com.yanyushkin.memes.ui.activities.main.fragments.memes
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.yanyushkin.memes.App
@@ -22,22 +23,30 @@ class MemesVM : ViewModel() {
         App.component.injectsMemesVM(this)
     }
 
-    fun getMemes(accessToken: String) {
-        val memesFromServer = mutableListOf<Meme>()
+    fun getMemes(context: Context) {
+        Log.d("rotated1", rotated.toString());
+        if (!rotated) {
+            Log.d("rotated2", rotated.toString());
+            val memesFromServer = mutableListOf<Meme>()
+            val accessToken = UserStorage(context).getAccessToken()
 
-        if (accessToken.isNotEmpty()) {
-            repository.getMemes(accessToken).subscribe({
-                it.forEach {
-                    memesFromServer.add(it.transform())
-                }
-                memes.value = memesFromServer
-                state.value = ScreenState.SUCCESS
-            },
-                {
-                    state.value = ScreenState.ERROR_OTHER
-                })
-        } else {
-            state.value = ScreenState.ERROR_OTHER
+            if (accessToken.isNotEmpty()) {
+                repository.getMemes(accessToken).subscribe({
+                    it.forEach {
+                        memesFromServer.add(it.transform())
+                    }
+                    memes.value = memesFromServer
+                    state.value = ScreenState.SUCCESS
+                },
+                    {
+                        if (memes.value == null || memes.value!!.size == 0)
+                            state.value = ScreenState.ERROR_OTHER
+                        else
+                            state.value = ScreenState.ERROR_NO_INTERNET
+                    })
+            } else {
+                state.value = ScreenState.ERROR_OTHER
+            }
         }
     }
 }
