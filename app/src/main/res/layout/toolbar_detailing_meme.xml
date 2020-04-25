@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/memes_toolbar"
+    android:id="@+id/meme_toolbar"
     android:layout_width="match_parent"
     android:layout_height="56dp"
     android:background="@color/colorBackground">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/title_toolbar_tv"
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/close_meme_btn"
         style="@style/MainTextViews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/toolbar_title_text" />
+        android:background="@drawable/ripple_button"
+        android:backgroundTint="@color/colorBackground"
+        android:src="@drawable/ic_close" />
 
     <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/share_meme_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:backgroundTint="@color/colorBackground"
-        android:src="@drawable/ic_search" />
+        android:src="@drawable/ic_share" />
 
 </androidx.appcompat.widget.Toolbar>

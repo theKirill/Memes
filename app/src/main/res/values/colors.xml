@@ -10,4 +10,5 @@
     <color name="colorError">#FF575D</color>
     <color name="colorSnackBarText">#FEFEFE</color>
     <color name="colorErrorMemes">#9FACC7</color>
+    <color name="colorDate">#CCFFFFFF</color>
 </resources>

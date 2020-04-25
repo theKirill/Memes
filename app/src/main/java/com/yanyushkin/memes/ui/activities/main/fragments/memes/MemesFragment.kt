@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.yanyushkin.memes.MEME_KEY
 import com.yanyushkin.memes.R
 import com.yanyushkin.memes.adapters.MemesAdapter
 import com.yanyushkin.memes.domain.Meme
@@ -19,7 +20,9 @@ import com.yanyushkin.memes.extensions.show
 import com.yanyushkin.memes.extensions.showSnackBar
 import com.yanyushkin.memes.states.ScreenState
 import com.yanyushkin.memes.storage.UserStorage
+import com.yanyushkin.memes.ui.activities.detailing.DetailingMemeActivity
 import com.yanyushkin.memes.utils.BaseViewModelFactory
+import com.yanyushkin.memes.utils.OnClickListener
 import kotlinx.android.synthetic.main.fragment_memes.*
 
 class MemesFragment : Fragment() {
@@ -110,7 +113,14 @@ class MemesFragment : Fragment() {
 
     // TODO: сделать шаринг мема (заголовок, ссылка на изображение, описание)
     private fun initAdapter(memes: MutableList<Meme>) {
-        adapter = MemesAdapter(memes, View.OnClickListener {
+        adapter = MemesAdapter(memes, object : OnClickListener {
+            override fun onClickView(position: Int) {
+                val openDetailingMemeActivityIntent =
+                    Intent(activity, DetailingMemeActivity::class.java)
+                openDetailingMemeActivityIntent.putExtra(MEME_KEY, memes[position])
+                startActivity(openDetailingMemeActivityIntent)
+            }
+        }, View.OnClickListener {
             val sendIntent = Intent().apply {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_TEXT, "share")

@@ -9,4 +9,5 @@
     <string name="toolbar_title_text">Популярные мемы</string>
     <string name="memes_error_text">Не удалось загрузить ленту\nОбновите экран или попробуйте позже</string>
     <string name="share_meme_text">Поделиться мемом</string>
+    <string name="meme_days_ago_text">дней назад</string>
 </resources>

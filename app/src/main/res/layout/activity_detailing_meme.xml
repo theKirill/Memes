@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/meme_main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:orientation="vertical"
+    tools:context=".ui.activities.detailing.DetailingMemeActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/meme_toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
+
+        <include
+            android:id="@+id/toolbar_meme"
+            layout="@layout/toolbar_detailing_meme"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="0dp"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:id="@+id/meme_scroll_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/content_meme_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/meme_title_tv"
+                style="@style/TitleTextViews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                tools:text="Работай дизайнер, солнце еще высоко..." />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/meme_image_iv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                tools:src="@drawable/image_meme_full" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/meme_date_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:textColor="@color/colorDate"
+                    android:textSize="12sp"
+                    tools:text="29 дней назад" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/meme_like_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/ripple_button"
+                    android:backgroundTint="@color/colorBackground"
+                    tools:src="@drawable/ic_like_empty" />
+
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/meme_description_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:textColor="@color/colorText"
+                android:textSize="14sp"
+                tools:text="Очень часто я вижу людей, которые уходят из своей классной профессии в модный дизайн." />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

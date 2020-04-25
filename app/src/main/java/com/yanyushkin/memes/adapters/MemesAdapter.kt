@@ -1,5 +1,6 @@
 package com.yanyushkin.memes.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,11 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.yanyushkin.memes.R
 import com.yanyushkin.memes.domain.Meme
+import com.yanyushkin.memes.utils.OnClickListener
 import kotlinx.android.synthetic.main.card_meme.view.*
 
 class MemesAdapter(
     private var memes: MutableList<Meme>,
-    private val shareClickListener: View.OnClickListener
+    private val onMemeClickListener: OnClickListener,
+    private val onShareClickListener: View.OnClickListener
 ) :
     RecyclerView.Adapter<MemesAdapter.ViewHolder>() {
 
@@ -32,9 +35,10 @@ class MemesAdapter(
 
     inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
-        // TODO
         init {
-            v.setOnClickListener { }
+            v.setOnClickListener {
+                onMemeClickListener.onClickView(adapterPosition)
+            }
         }
 
         fun bind(pos: Int) {
@@ -72,6 +76,6 @@ class MemesAdapter(
         }
 
         private fun setClickListenerOnShareButton() =
-            itemView.share_btn.setOnClickListener(shareClickListener)
+            itemView.share_btn.setOnClickListener(onShareClickListener)
     }
 }
