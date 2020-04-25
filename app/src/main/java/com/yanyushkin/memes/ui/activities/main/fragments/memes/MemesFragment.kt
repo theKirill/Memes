@@ -79,17 +79,10 @@ class MemesFragment : Fragment() {
         memesViewModel.state.observe(this, Observer<ScreenState> {
             when (it) {
                 ScreenState.SUCCESS -> {
-                    memesViewModel.memes.value?.let {
-                        if (!swipe_memes_layout.isRefreshing) {
-                            initAdapter(it)
-                            memes_rv.adapter = adapter
-                        } else {
-                            adapter.setMemes(it)
-                        }
-                    }
-                    swipe_memes_layout.show()
+                    showMemes()
                 }
                 ScreenState.ERROR_NO_INTERNET -> {
+                    showMemes()
                     showSnackBar(memes_main_layout, activity, R.string.auth_no_internet_sb)
                 }
                 ScreenState.ERROR_OTHER -> {
@@ -101,6 +94,18 @@ class MemesFragment : Fragment() {
             swipe_memes_layout.isRefreshing = false
             progress_memes_layout.gone()
         })
+    }
+
+    private fun showMemes() {
+        memesViewModel.memes.value?.let {
+            if (!swipe_memes_layout.isRefreshing) {
+                initAdapter(it)
+                memes_rv.adapter = adapter
+            } else {
+                adapter.setMemes(it)
+            }
+        }
+        swipe_memes_layout.show()
     }
 
     // TODO: сделать шаринг мема (заголовок, ссылка на изображение, описание)
