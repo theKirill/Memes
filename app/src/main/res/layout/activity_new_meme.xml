@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/new_meme_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/new_meme_scroll_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp">
+
+        <LinearLayout
+            android:id="@+id/content_new_meme_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/new_meme_title_et"
+                style="@style/NewMemeEditTexts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/new_meme_title_hint"
+                android:maxLength="140"
+                android:textSize="24sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/new_meme_error_title_tv"
+                style="@style/OtherErrorTextViews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/new_meme_error_title_text"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/new_meme_description_et"
+                style="@style/NewMemeEditTexts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/new_meme_description_hint"
+                android:maxLength="1000"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/new_meme_error_descr_tv"
+                style="@style/OtherErrorTextViews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/new_meme_error_descr_text"
+                android:visibility="gone" />
+
+            <FrameLayout
+                android:id="@+id/new_meme_image_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/new_meme_image_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/image_meme_full" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/new_meme_remove_img_btn"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:alpha="0.7"
+                    android:background="@drawable/round_shape_button2"
+                    android:src="@drawable/ic_close" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/new_meme_load_img_btn"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="16dp"
+        android:alpha="0.7"
+        android:background="@drawable/round_shape_button3"
+        android:src="@drawable/ic_photo" />
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/new_meme_toolbar"
+            layout="@layout/toolbar_new_meme"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+</FrameLayout>

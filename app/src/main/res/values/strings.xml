@@ -10,4 +10,9 @@
     <string name="memes_error_text">Не удалось загрузить ленту\nОбновите экран или попробуйте позже</string>
     <string name="share_meme_text">Поделиться мемом</string>
     <string name="meme_days_ago_text">дней назад</string>
+    <string name="create_meme_btn">Создать</string>
+    <string name="new_meme_title_hint">Заголовок</string>
+    <string name="new_meme_description_hint">Описание</string>
+    <string name="new_meme_error_title_text">Превышено кол-во символов в заголовке (max = 140)</string>
+    <string name="new_meme_error_descr_text">Превышено кол-во символов в описании (max = 1000)</string>
 </resources>

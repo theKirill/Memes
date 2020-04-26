@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.yanyushkin.memes.R
+import com.yanyushkin.memes.extensions.gone
+import kotlinx.android.synthetic.main.activity_main.*
 
 class NewMemeFragment : Fragment() {
 

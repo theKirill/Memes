@@ -1,5 +1,6 @@
 package com.yanyushkin.memes.ui.activities.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import com.yanyushkin.memes.R
 import com.yanyushkin.memes.ui.activities.main.fragments.memes.MemesFragment
 import com.yanyushkin.memes.ui.activities.main.fragments.new_meme.NewMemeFragment
 import com.yanyushkin.memes.ui.activities.main.fragments.user.UserFragment
+import com.yanyushkin.memes.ui.activities.newMeme.NewMemeActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -38,9 +40,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun addFragments(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
-            currentFragmentId = "memes"
+            currentFragmentId = fragments.keys.elementAt(0)
         } else {
-            currentFragmentId = savedInstanceState.getString(FRAGMENT_ID_KEY, "memes")
+            currentFragmentId =
+                savedInstanceState.getString(FRAGMENT_ID_KEY, fragments.keys.elementAt(0))
         }
 
         currentFragment = fragments[currentFragmentId]!!
@@ -53,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
-    private fun setOnNavItemSelectedListener() {
+    private fun setOnNavItemSelectedListener() =
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.memes_item -> {
@@ -61,8 +64,8 @@ class MainActivity : AppCompatActivity() {
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.new_meme_item -> {
-                    changeFragment(newMemeFragment, currentFragment)
-                    return@setOnNavigationItemSelectedListener true
+                    openNewMemeActivity()
+                    return@setOnNavigationItemSelectedListener false
                 }
                 R.id.user_item -> {
                     changeFragment(userFragment, currentFragment)
@@ -73,7 +76,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
 
     private fun changeFragment(newFragment: Fragment, oldFragment: Fragment) {
         if (newFragment != oldFragment) {
@@ -82,5 +84,11 @@ class MainActivity : AppCompatActivity() {
             val indexOfCurrentFragment = fragments.values.indexOf(currentFragment)
             currentFragmentId = fragments.keys.elementAt(indexOfCurrentFragment)
         }
+    }
+
+    private fun openNewMemeActivity() {
+        val openNewMemeActivityIntent = Intent(this, NewMemeActivity::class.java)
+        startActivity(openNewMemeActivityIntent)
+        overridePendingTransition(R.anim.bottom_in, R.anim.top_out)
     }
 }

@@ -68,12 +68,11 @@ class MemesAdapter(
         }
 
         // TODO: добавить сохранение состояния кнопки лайка
-        private fun setClickListenerOnLikeButton(i: Int) {
+        private fun setClickListenerOnLikeButton(i: Int) =
             itemView.like_btn.setOnClickListener {
                 memes[i].isFavourite = !memes[i].isFavourite
                 setLike(memes[i].isFavourite)
             }
-        }
 
         private fun setClickListenerOnShareButton(i: Int) =
             itemView.share_btn.setOnClickListener {

@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activities.detailing.DetailingMemeActivity"></activity>
+        <activity
+            android:name=".ui.activities.newMeme.NewMemeActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name=".ui.activities.detailing.DetailingMemeActivity" />
         <activity android:name=".ui.activities.main.MainActivity" />
         <activity
             android:name=".ui.activities.auth.AuthorizationActivity"

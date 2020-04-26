@@ -60,4 +60,21 @@
         <item name="android:lineSpacingExtra">3sp</item>
     </style>
 
+    <style name="NewMemeEditTexts">
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColorHint">@color/colorSecondaryTF</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="backgroundTint">@color/colorPrimary</item>
+    </style>
+
+    <style name="OtherErrorTextViews">
+        <item name="fontFamily">Roboto</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorError</item>
+        <item name="android:layout_gravity">end</item>
+        <item name="android:textAlignment">textEnd</item>
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
+
 </resources>
