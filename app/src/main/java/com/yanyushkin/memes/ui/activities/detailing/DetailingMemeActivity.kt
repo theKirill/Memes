@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.yanyushkin.memes.MEME_KEY
 import com.yanyushkin.memes.R
 import com.yanyushkin.memes.domain.Meme
+import com.yanyushkin.memes.utils.getDifferenceBetweenDatesInDays
 import kotlinx.android.synthetic.main.activity_detailing_meme.*
 import kotlinx.android.synthetic.main.toolbar_detailing_meme.*
 import java.util.*
@@ -46,13 +47,8 @@ class DetailingMemeActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun setDate() {
-        val currentDate = Date()
-        val memeDate = meme.createdDate
-
-        val datesDifference = currentDate.time - memeDate
-        val daysDifference = datesDifference / (24 * 60 * 60 * 1000)
-
-        meme_date_tv.text = daysDifference.toString() + " " + getString(R.string.meme_days_ago_text)
+        meme_date_tv.text =
+            getDifferenceBetweenDatesInDays(meme.createdDate).toString() + " " + getString(R.string.meme_days_ago_text)
     }
 
     private fun setLike() {
