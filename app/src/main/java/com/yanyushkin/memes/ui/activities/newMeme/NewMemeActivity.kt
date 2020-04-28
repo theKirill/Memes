@@ -2,8 +2,13 @@ package com.yanyushkin.memes.ui.activities.newMeme
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.yanyushkin.memes.R
 import com.yanyushkin.memes.extensions.*
+import com.yanyushkin.memes.utils.BaseViewModelFactory
 import com.yanyushkin.memes.utils.validDescriptionTitleLen
 import com.yanyushkin.memes.utils.validField
 import com.yanyushkin.memes.utils.validMemeTitleLen
@@ -12,10 +17,16 @@ import kotlinx.android.synthetic.main.toolbar_new_meme.*
 
 class NewMemeActivity : AppCompatActivity() {
 
+    private lateinit var newMemeViewMode: NewMemeVM
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.MainTheme)
         setContentView(R.layout.activity_new_meme)
+
+        newMemeViewMode =
+            ViewModelProvider(this,
+                BaseViewModelFactory { NewMemeVM() }).get(NewMemeVM::class.java)
 
         setOnClickListeners()
         initTextChangeWatchers()
