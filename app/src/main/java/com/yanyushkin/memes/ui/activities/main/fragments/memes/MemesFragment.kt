@@ -130,10 +130,8 @@ class MemesFragment : Fragment() {
 
     private fun shareMeme(meme: Meme) {
         val sendIntent = Intent().apply {
-            action = Intent.ACTION_SEND_MULTIPLE
-            putExtra(Intent.EXTRA_TEXT, meme.title)
-            putExtra(Intent.EXTRA_TEXT, meme.photoUrl)
-            putExtra(Intent.EXTRA_TEXT, meme.description)
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, meme.title + "\n" + meme.description + "\n" + meme.photoUrl)
             type = "text/plain"
             flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
         }
