@@ -134,17 +134,24 @@ class UserFragment : Fragment() {
 
         userVM.stateLogout.observe(this, Observer {
             when (it) {
-                ScreenState.SUCCESS -> openAuthorizationActivity()
-                ScreenState.ERROR_NO_INTERNET -> showSnackBar(
-                    user_data_layout,
-                    activity,
-                    R.string.auth_no_internet_sb
-                )
-                ScreenState.ERROR_OTHER -> showSnackBar(
-                    username_tv,
-                    activity,
-                    R.string.error_sb
-                )
+                ScreenState.SUCCESS -> {
+                    openAuthorizationActivity()
+                    activity!!.finish()
+                }
+                ScreenState.ERROR_NO_INTERNET -> {
+                    showSnackBar(
+                        user_data_layout,
+                        activity,
+                        R.string.auth_no_internet_sb
+                    )
+                }
+                ScreenState.ERROR_OTHER -> {
+                    showSnackBar(
+                        username_tv,
+                        activity,
+                        R.string.error_sb
+                    )
+                }
             }
         })
     }
