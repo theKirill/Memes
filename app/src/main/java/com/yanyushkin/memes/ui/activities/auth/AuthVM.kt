@@ -20,7 +20,6 @@ class AuthVM : ViewModel() {
     val loginValid = MutableLiveData<Boolean>()
     val passwordValid = MutableLiveData<Boolean>()
     val passwordVisible = MutableLiveData<Boolean>()
-    private lateinit var userStorage: UserStorage
 
     init {
         App.component.injectsAuthVM(this)

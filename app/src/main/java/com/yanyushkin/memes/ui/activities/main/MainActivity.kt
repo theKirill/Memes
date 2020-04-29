@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     private val memesFragment = MemesFragment.instance
     private val newMemeFragment = NewMemeFragment()
-    private val userFragment = UserFragment()
+    private val userFragment = UserFragment.instance
     private lateinit var currentFragment: Fragment
     private lateinit var currentFragmentId: String
     private val fragments =
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setTheme(R.style.MainTheme)
         setContentView(R.layout.activity_main)
-setSupportActionBar(user_toolbar)
+
         addFragments(savedInstanceState)
         setOnNavItemSelectedListener()
     }
@@ -87,9 +87,9 @@ setSupportActionBar(user_toolbar)
         }
     }
 
-    private fun openNewMemeActivity() {
-        val openNewMemeActivityIntent = Intent(this, NewMemeActivity::class.java)
-        startActivity(openNewMemeActivityIntent)
-        overridePendingTransition(R.anim.bottom_in, R.anim.top_out)
-    }
+    private fun openNewMemeActivity() =
+        Intent(this, NewMemeActivity::class.java).run {
+            startActivity(this)
+            overridePendingTransition(R.anim.bottom_in, R.anim.top_out)
+        }
 }

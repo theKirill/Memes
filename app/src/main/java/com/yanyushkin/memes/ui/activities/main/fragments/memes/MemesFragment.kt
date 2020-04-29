@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -21,6 +24,7 @@ import com.yanyushkin.memes.states.ScreenState
 import com.yanyushkin.memes.ui.activities.detailing.DetailingMemeActivity
 import com.yanyushkin.memes.utils.BaseViewModelFactory
 import com.yanyushkin.memes.utils.OnClickListener
+import kotlinx.android.synthetic.main.card_meme.*
 import kotlinx.android.synthetic.main.fragment_memes.*
 
 class MemesFragment : Fragment() {
@@ -118,12 +122,11 @@ class MemesFragment : Fragment() {
         })
     }
 
-    private fun openDetailingMemeActivity(meme: Meme) {
-        val openDetailingMemeActivityIntent =
-            Intent(activity, DetailingMemeActivity::class.java)
-        openDetailingMemeActivityIntent.putExtra(MEME_KEY, meme)
-        startActivity(openDetailingMemeActivityIntent)
-    }
+    private fun openDetailingMemeActivity(meme: Meme) =
+        Intent(activity, DetailingMemeActivity::class.java).putExtra(MEME_KEY, meme)
+            .run {
+                startActivity(this)
+            }
 
     private fun shareMeme(meme: Meme) {
         val sendIntent = Intent().apply {

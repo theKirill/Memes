@@ -1,6 +1,5 @@
 package com.yanyushkin.memes.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -10,7 +9,7 @@ import io.reactivex.Observable
 interface MemeDao {
 
     @Query("SELECT * FROM meme")
-    fun getAllMemes(): LiveData<List<Meme>>
+    fun getAllMemes(): Flowable<List<Meme>>
 
     @Query("SELECT * FROM meme WHERE title LIKE :title")
     fun filterMemes(title: String): List<Meme>

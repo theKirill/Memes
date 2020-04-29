@@ -67,7 +67,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
-                    android:src="@drawable/image_meme_full" />
+                    android:src="@drawable/image_meme_full"
+                    android:tag="" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/new_meme_remove_img_btn"
@@ -96,7 +97,6 @@
         android:alpha="0.7"
         android:background="@drawable/round_shape_button3"
         android:src="@drawable/ic_photo" />
-
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/new_meme_toolbar_layout"

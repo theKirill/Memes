@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.yanyushkin.memes.R
 import com.yanyushkin.memes.domain.Meme
+import com.yanyushkin.memes.extensions.gone
 import com.yanyushkin.memes.utils.OnClickListener
 import kotlinx.android.synthetic.main.card_meme.view.*
 
@@ -51,8 +52,12 @@ class MemesAdapter(
             setClickListenerOnShareButton(pos)
         }
 
-        private fun setImage(imageUrl: String) =
-            Glide.with(itemView.meme_cv).load(imageUrl).into(itemView.meme_image_iv)
+        private fun setImage(imageUrl: String) {
+            if (imageUrl.isNotEmpty())
+                Glide.with(itemView.meme_cv).load(imageUrl).into(itemView.meme_image_iv)
+            else
+                itemView.meme_image_iv.gone()
+        }
 
         private fun setHeader(title: String) {
             itemView.title_tv.text = title

@@ -55,12 +55,12 @@ class RoundedImageView : AppCompatImageView {
 
         val rect = RectF()
         with(rect) {
-            set(25f, 25f, (width/1.2).toFloat(), (height/1.2).toFloat())
+            set(23f, 23f, (width/1.12).toFloat(), (height/1.12).toFloat())
         }
 
         val imagePaint = Paint()
         imagePaint.isAntiAlias = true
         imagePaint.shader = shader
-        canvas.drawRoundRect(rect, width.toFloat()/2, height.toFloat()/2, imagePaint)
+        canvas.drawRoundRect(rect, width.toFloat(), height.toFloat(), imagePaint)
     }
 }

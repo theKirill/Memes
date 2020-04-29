@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
+            android:transitionName="meme_image"
             tools:src="@drawable/image_meme" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -34,6 +35,7 @@
             android:layout_marginEnd="10dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:transitionName="meme_title"
             tools:text="Bacon Weave Taco Shell " />
 
         <LinearLayout
@@ -49,10 +51,11 @@
                 android:id="@+id/like_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
                 android:background="@drawable/ripple_button"
                 android:backgroundTint="@color/colorBackground"
-                tools:src="@drawable/ic_like_empty"
-                android:layout_marginEnd="15dp"/>
+                android:transitionName="meme_like"
+                tools:src="@drawable/ic_like_empty" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/share_btn"
@@ -60,7 +63,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/ripple_button"
                 android:backgroundTint="@color/colorBackground"
-                android:src="@drawable/ic_share" />
+                android:src="@drawable/ic_share"
+                android:transitionName="meme_share" />
 
         </LinearLayout>
 

@@ -23,4 +23,7 @@
     <string name="dialog_logout_btn">Выйти</string>
     <string name="dialog_cancel_btn">Отмена</string>
     <string name="auth_phone_begin_et">\"+7 \"</string>
+    <string name="new_meme_success">Новый мем успешно создан!</string>
+    <string name="no_camera_permission">Нет разрешения на использование камеры!</string>
+    <string name="request_camera_permission">Выдайте мне, пожалуйста, разрешнение на камеру :)</string>
 </resources>
