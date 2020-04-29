@@ -12,6 +12,7 @@ import com.yanyushkin.memes.ui.activities.main.fragments.new_meme.NewMemeFragmen
 import com.yanyushkin.memes.ui.activities.main.fragments.user.UserFragment
 import com.yanyushkin.memes.ui.activities.newMeme.NewMemeActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_user.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setTheme(R.style.MainTheme)
         setContentView(R.layout.activity_main)
-
+setSupportActionBar(user_toolbar)
         addFragments(savedInstanceState)
         setOnNavItemSelectedListener()
     }

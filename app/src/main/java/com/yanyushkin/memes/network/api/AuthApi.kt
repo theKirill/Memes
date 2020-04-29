@@ -10,4 +10,7 @@ interface AuthApi {
 
     @POST("auth/login")
     fun auth(@Body authCredentialsRequest: AuthCredentialsRequest): Observable<AuthResponse>
+
+    @POST("auth/logout")
+    fun logout(): Observable<Unit>
 }

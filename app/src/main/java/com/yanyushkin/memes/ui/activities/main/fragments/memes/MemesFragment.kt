@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,7 +18,6 @@ import com.yanyushkin.memes.extensions.gone
 import com.yanyushkin.memes.extensions.show
 import com.yanyushkin.memes.extensions.showSnackBar
 import com.yanyushkin.memes.states.ScreenState
-import com.yanyushkin.memes.storage.UserStorage
 import com.yanyushkin.memes.ui.activities.detailing.DetailingMemeActivity
 import com.yanyushkin.memes.utils.BaseViewModelFactory
 import com.yanyushkin.memes.utils.OnClickListener
@@ -111,7 +109,6 @@ class MemesFragment : Fragment() {
         swipe_memes_layout.show()
     }
 
-    // TODO: сделать шаринг мема (заголовок, ссылка на изображение, описание)
     private fun initAdapter(memes: MutableList<Meme>) {
         adapter = MemesAdapter(memes, object : OnClickListener {
             override fun onClickView(position: Int) =
@@ -134,7 +131,7 @@ class MemesFragment : Fragment() {
             putExtra(Intent.EXTRA_TEXT, meme.title)
             putExtra(Intent.EXTRA_TEXT, meme.photoUrl)
             putExtra(Intent.EXTRA_TEXT, meme.description)
-            type="text/plain"
+            type = "text/plain"
             flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
         }
         val shareIntent =

@@ -15,4 +15,12 @@
     <string name="new_meme_description_hint">Описание</string>
     <string name="new_meme_error_title_text">Превышено кол-во символов в заголовке (max = 140)</string>
     <string name="new_meme_error_descr_text">Превышено кол-во символов в описании (max = 1000)</string>
+    <string name="menu_about">О приложении</string>
+    <string name="menu_logout">Выйти</string>
+    <string name="no_user_memes_text">Нет собственных мемов</string>
+    <string name="error_sb">Произошла непредвиденная ситуация\nПопробуйте позже</string>
+    <string name="dialog_are_you_sure_title">Вы действительно хотите выйти?</string>
+    <string name="dialog_logout_btn">Выйти</string>
+    <string name="dialog_cancel_btn">Отмена</string>
+    <string name="auth_phone_begin_et">\"+7 \"</string>
 </resources>

@@ -3,6 +3,7 @@ package com.yanyushkin.memes.ui.activities.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.InputType
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -48,14 +49,19 @@ class AuthorizationActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
+        addLoginTextChangedListener()
         initPasswordTextChangeWatcher()
         initLoginButtonClickListener()
         initIconShowPassClickListener()
     }
 
+    private fun addLoginTextChangedListener() =
+        login_et.addTextChangedListener(PhoneNumberFormattingTextWatcher())
+
     private fun initPasswordTextChangeWatcher() {
         if (password_et.text.isNotEmpty() && !validPassLen(password_et.text.toString()))
             password_tf.helperText = "Пароль должен содержать $PASSWORD_LENGTH символов"
+
         password_tf.setSimpleTextChangeWatcher { theNewText, _ ->
             if (!validPassLen(theNewText))
                 password_tf.helperText = "Пароль должен содержать $PASSWORD_LENGTH символов"

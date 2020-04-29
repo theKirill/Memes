@@ -12,7 +12,7 @@ import com.yanyushkin.memes.utils.validPassLen
 import java.net.UnknownHostException
 import javax.inject.Inject
 
-class AuthVM () : ViewModel() {
+class AuthVM : ViewModel() {
 
     @Inject
     lateinit var repository: AuthRepository
@@ -30,11 +30,10 @@ class AuthVM () : ViewModel() {
     fun auth(login: String, password: String, context: Context) {
         loginValid.value = validField(login)
         passwordValid.value = validField(password) && validPassLen(password)
-        userStorage = UserStorage(context)
 
         if (loginValid.value!! && passwordValid.value!!) {
             repository.auth(login, password).subscribe({
-                userStorage.saveUserInfo(it.accessToken, it.userInfo.transform())
+                UserStorage(context).saveUserInfo(it.accessToken, it.userInfo.transform())
                 state.value = ScreenState.SUCCESS
             }, {
                 if (it is UnknownHostException)

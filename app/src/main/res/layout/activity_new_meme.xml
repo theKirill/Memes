@@ -99,7 +99,7 @@
 
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/toolbar_layout"
+        android:id="@+id/new_meme_toolbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
